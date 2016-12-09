@@ -17,10 +17,3 @@ export default {
 
 <style src="assets/css/normalize.css"></style>
 <style src="assets/css/skeleton.css"></style>
-
-<style>
-#app {
-  text-align: center;
-  margin-top: 150px;
-}
-</style>
