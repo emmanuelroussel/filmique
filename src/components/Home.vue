@@ -2,7 +2,7 @@
   <div class="home">
     <h1 class="logo logo-full-size">filmique</h1>
     <h4>Search for any theme and get a list of films corresponding to that theme</h4>
-    <input class="input-home" type="text" placeholder="Search" />
+    <input class="input-home" type="text" placeholder="Ex: Space, World War 2, Gangster, etc." />
     <button class="button-primary">Find films</button>
   </div>
 </template>
