@@ -3,8 +3,8 @@
     <div class="row">
       <h1 class="logo logo-full-size">filmique</h1>
       <h4>Search for any theme and get a list of films corresponding to that theme</h4>
-      <input class="input-home" type="text" placeholder="Ex: Space, World War 2, Gangster, etc." />
-      <button class="button-primary">Find films</button>
+      <input v-model="input" class="input-home" type="text" placeholder="Ex: Space, World War 2, Gangster, etc." />
+      <button v-on:click="search" class="button-primary">Find films</button>
     </div>
   </div>
 </template>
@@ -14,7 +14,12 @@ export default {
   name: 'home',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      input: ''
+    }
+  },
+  methods: {
+    search: function () {
+      this.$emit('search', this.input)
     }
   }
 }

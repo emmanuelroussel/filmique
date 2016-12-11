@@ -7,7 +7,6 @@ describe('Home.vue', () => {
       el: document.createElement('div'),
       render: (h) => h(Home)
     })
-    expect(vm.$el.querySelector('.home h1').textContent)
-      .to.equal('Welcome to Your Vue.js App')
+    expect(vm.$el.querySelector('.home h1').textContent).to.equal('filmique')
   })
 })
