@@ -1,6 +1,16 @@
 <template>
   <div class="movie-info">
-    {{ movie.overview }}
+    <div class="main">
+      {{ movie.Genre }} | {{ movie.Runtime }} | {{ movie.Rated }}
+    </div>
+    <div class="overview">
+      {{ movie.Plot }}
+    </div>
+    <div class="rating">
+        {{ movie.imdbRating }}/10
+        <br />
+        IMDB
+    </div>
   </div>
 </template>
 
@@ -13,5 +23,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.main, .rating {
+  font-weight: bold;
+}
 </style>

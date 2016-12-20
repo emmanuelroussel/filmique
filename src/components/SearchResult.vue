@@ -30,14 +30,15 @@ export default {
   },
   methods: {
     toggleInfo: function (movie, index) {
-      // Create a copy of movie. Using parsing to remove reference to movie
-      let movieInfo = JSON.parse(JSON.stringify(movie))
-
-      movieInfo.info = true
-      movieInfo.index = index
-
-      // Insert movieInfo into items to show
-      this.items.splice(Math.ceil((index + 1) / 4.0) * 4, 0, movieInfo)
+      this.$http.get('http://localhost:3000/api/movies/' + movie.id).then(function (res) {
+        let movieInfo = res.body
+        movieInfo.info = true
+        movieInfo.index = index
+        this.items.splice(Math.ceil((index + 1) / 4.0) * 4, 0, movieInfo)
+        console.log(this.items[Math.ceil((index + 1) / 4.0) * 4])
+      }, function (err) {
+        console.error(err)
+      })
     }
   }
 }
