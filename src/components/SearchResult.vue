@@ -4,25 +4,40 @@
       <h3>Results for: {{ searchInput }}</h3>
     </div>
     <div class="row grid">
-      <div class="custom-column" v-for="(movie, index) in movies" v-on:click="toggleInfo(index)" v-bind:id="'movie-' + index">
-        <movie-thumbnail :poster-path="movie.poster_path" :title="movie.title" :release-date="movie.release_date"></movie-thumbnail>
+      <div class="custom-column" v-for="(item, index) in items" v-on:click="toggleInfo(item, index)" v-bind:class="{ 'movie-info-container': item.info }">
+        <movie-info v-if="item.info" :movie="item" :index="item.index"></movie-info>
+        <movie-thumbnail v-else :poster="item.poster_path" :title="item.title" :date="item.release_date"></movie-thumbnail>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import MovieInfo from './MovieInfo'
 import MovieThumbnail from './MovieThumbnail'
 
 export default {
   name: 'search-result',
   components: {
+    MovieInfo,
     MovieThumbnail
   },
   props: ['movies', 'searchInput'],
+  data: function () {
+    return {
+      items: this.movies
+    }
+  },
   methods: {
-    toggleInfo: function (index) {
-      console.log(index)
+    toggleInfo: function (movie, index) {
+      // Create a copy of movie. Using parsing to remove reference to movie
+      let movieInfo = JSON.parse(JSON.stringify(movie))
+
+      movieInfo.info = true
+      movieInfo.index = index
+
+      // Insert movieInfo into items to show
+      this.items.splice(Math.ceil((index + 1) / 4.0) * 4, 0, movieInfo)
     }
   }
 }
@@ -34,6 +49,9 @@ export default {
   text-align: center;
   margin-left: -1em;
   margin-right: -1em;
+}
+.movie-info-container {
+  width: 100%;
 }
 /* Larger than phablet */
 @media (min-width: 1000px) {

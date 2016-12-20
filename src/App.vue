@@ -28,7 +28,15 @@ export default {
 
       // Do search
       this.$http.get('http://localhost:3000/api/movies/' + input + '/' + '1').then(function (res) {
-        this.results = res.body.results
+        // Add info = false to all movies
+        let tempResults = res.body.results
+        if (tempResults) {
+          for (let i = 0; i < tempResults.length; i++) {
+            tempResults[i].info = false
+          }
+        }
+
+        this.results = tempResults
       }, function (err) {
         console.error(err)
       })

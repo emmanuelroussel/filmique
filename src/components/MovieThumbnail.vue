@@ -1,13 +1,13 @@
 <template>
   <div >
     <div class="movie-poster">
-      <img class="u-full-width" v-bind:src="posterPath" />
+      <img class="u-full-width" v-bind:src="poster" />
     </div>
     <div class="movie-title">
       {{ title }}
     </div>
     <div>
-      {{ releaseDate | getYear }}
+      {{ date | getYear }}
     </div>
   </div>
 </template>
@@ -15,7 +15,7 @@
 <script>
 export default {
   name: 'movie-thumbnail',
-  props: ['posterPath', 'title', 'releaseDate'],
+  props: ['poster', 'title', 'date'],
   filters: {
     getYear: function (date) {
       if (!date) return ''
