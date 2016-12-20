@@ -62,7 +62,7 @@ export default {
   top: 0;
 }
 /* Larger than phablet */
-@media (min-width: 550px) {
+@media (min-width: 1000px) {
   .grid {
     margin-left: -2em;
     margin-right: -2em;
