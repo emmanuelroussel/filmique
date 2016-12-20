@@ -13,7 +13,7 @@
             {{ movie.title }}
           </div>
           <div>
-            {{ movie.release_date }}
+            {{ movie.release_date | getYear }}
           </div>
         </div>
       </div>
@@ -24,7 +24,13 @@
 <script>
 export default {
   name: 'search-result',
-  props: ['movies', 'searchInput']
+  props: ['movies', 'searchInput'],
+  filters: {
+    getYear: function (date) {
+      if (!date) return ''
+      return date.slice(0, date.indexOf('-'))
+    }
+  }
 }
 </script>
 
