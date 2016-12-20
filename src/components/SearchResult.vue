@@ -6,7 +6,9 @@
     <div class="row grid">
       <div class="custom-column" v-for="movie in movies">
         <div class="grid-inner-container">
-          <img class="u-max-full-width movie-poster" v-bind:src="movie.poster_path" />
+          <div class="movie-poster">
+            <img class="u-full-width" v-bind:src="movie.poster_path" />
+          </div>
           <div class="movie-title">
             {{ movie.title }}
           </div>
@@ -40,9 +42,18 @@ export default {
   margin-right: -1em;
 }
 .movie-poster {
+  padding-top: 150%;
+  position: relative;
+  margin-top: -1em;
+}
+.movie-poster > img {
+  position: absolute;
   padding-left: 1em;
   padding-right: 1em;
-  padding-top: 1em;
+  padding-top: 2em;
+  height: 100%;
+  left: 0;
+  top: 0;
 }
 /* Larger than phablet */
 @media (min-width: 550px) {
@@ -51,9 +62,12 @@ export default {
     margin-right: -2em;
   }
   .movie-poster {
+    margin-top: -2em;
+  }
+  .movie-poster > img {
     padding-left: 2em;
     padding-right: 2em;
-    padding-top: 2em;
+    padding-top: 4em;
   }
 }
 </style>
