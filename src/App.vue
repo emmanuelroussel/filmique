@@ -23,6 +23,7 @@ export default {
   },
   methods: {
     search: function (input) {
+      this.results = []
       this.searchInput = input
 
       // Do search
