@@ -30,6 +30,9 @@ export default {
 <style scoped>
 .movie-title {
   font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .grid {
   text-align: center;
