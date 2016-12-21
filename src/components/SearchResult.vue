@@ -4,17 +4,20 @@
       <h3>Results for: {{ searchInput }}</h3>
     </div>
     <div class="row grid">
-      <div class="custom-column" v-for="(item, index) in items" v-on:click="toggleInfo(item, index)" v-bind:class="{ 'movie-info-container': item.info }">
-        <movie-info v-if="item.info" :movie="item" :index="item.index"></movie-info>
-        <movie-thumbnail v-else :poster="item.poster_path" :title="item.title" :date="item.release_date"></movie-thumbnail>
+      <div v-for="(movie, index) in movies" v-bind:id="'movie-' + index">
+        <div class="custom-column" v-on:click="toggleInfo(movie, index)">
+          <movie-thumbnail :posterPath="movie.poster_path" :title="movie.title" :releaseDate="movie.release_date"></movie-thumbnail>
+        </div>
       </div>
     </div>
+    <movie-info v-show="selectedMovie.show" id="movie-info" :movie="selectedMovie.info" :index="selectedMovie.index"></movie-info>
   </div>
 </template>
 
 <script>
 import MovieInfo from './MovieInfo'
 import MovieThumbnail from './MovieThumbnail'
+import $ from 'jquery'
 
 export default {
   name: 'search-result',
@@ -25,17 +28,26 @@ export default {
   props: ['movies', 'searchInput'],
   data: function () {
     return {
-      items: this.movies
+      selectedMovie: {
+        info: this.movies[0], // dummy data to avoid undefined properties
+        index: 0,
+        show: false
+      }
     }
   },
   methods: {
     toggleInfo: function (movie, index) {
+      // Find where the movie-info component should go
+      const movieInfoIndex = (Math.ceil((index + 1) / 4.0) * 4) - 1
+
       this.$http.get('http://localhost:3000/api/movies/' + movie.id).then(function (res) {
-        let movieInfo = res.body
-        movieInfo.info = true
-        movieInfo.index = index
-        this.items.splice(Math.ceil((index + 1) / 4.0) * 4, 0, movieInfo)
-        console.log(this.items[Math.ceil((index + 1) / 4.0) * 4])
+        this.selectedMovie.info = res.body
+        this.selectedMovie.index = movieInfoIndex
+
+        // Move movie-info component to the right position in the DOM
+        $(this.$el).find('#movie-' + movieInfoIndex).append($('#movie-info'))
+
+        this.selectedMovie.show = true
       }, function (err) {
         console.error(err)
       })
