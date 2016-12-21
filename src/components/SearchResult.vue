@@ -42,7 +42,7 @@ export default {
 
       this.$http.get('http://localhost:3000/api/movies/' + movie.id).then(function (res) {
         this.selectedMovie.info = res.body
-        this.selectedMovie.index = movieInfoIndex
+        this.selectedMovie.index = index % 4
 
         // Move movie-info component to the right position in the DOM
         $(this.$el).find('#movie-' + movieInfoIndex).append($('#movie-info'))
