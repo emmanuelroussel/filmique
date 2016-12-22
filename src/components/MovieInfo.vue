@@ -6,7 +6,7 @@
     <div class="line"></div>
 
     <div class="basic-info">
-      {{ movie.Genre }} | {{ movie.Runtime }} | {{ movie.Rated }}
+      {{ movie.Genre }} | {{ formattedRuntime }} | {{ movie.Rated }}
     </div>
     <div class="row">
       <div class="plot ten columns">
@@ -33,7 +33,23 @@
 <script>
 export default {
   name: 'movie-info',
-  props: ['movie', 'index']
+  props: ['movie', 'index'],
+  computed: {
+    formattedRuntime: function () {
+      if (!this.movie.Runtime || this.movie.Runtime === 'N/A') {
+        return 'N/A'
+      }
+
+      const runtime = this.movie.Runtime.replace(' min', '')
+      const hours = Math.floor(runtime / 60)
+      let minutes = runtime % 60
+
+      if (minutes < 10) {
+        minutes = '0' + minutes
+      }
+      return hours + 'h ' + minutes
+    }
+  }
 }
 </script>
 
