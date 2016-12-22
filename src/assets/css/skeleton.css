@@ -57,6 +57,13 @@
 @media (min-width: 550px) {
   .container {
     width: 80%; }
+}
+
+/* Larger than tablet */
+@media (min-width: 750px) {
+  .custom-column {
+    width: 25%; }
+
   .one.column,
   .one.columns                    { width: 4.66666666667%; }
   .two.columns                    { width: 13.3333333333%; }
@@ -107,12 +114,6 @@
 
   .offset-by-one-half.column,
   .offset-by-one-half.columns     { margin-left: 52%; }
-}
-
-/* Larger than tablet */
-@media (min-width: 750px) {
-  .custom-column {
-    width: 25%; }
 }
 
 
@@ -389,10 +390,10 @@ there.
 /* Larger than mobile */
 @media (min-width: 400px) {}
 
-/* Larger than phablet (also point when grid becomes active) */
+/* Larger than phablet */
 @media (min-width: 550px) {}
 
-/* Larger than tablet */
+/* Larger than tablet (also point when grid becomes active) */
 @media (min-width: 750px) {}
 
 /* Larger than desktop */
