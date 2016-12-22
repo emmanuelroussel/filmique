@@ -17,7 +17,6 @@
 <script>
 import MovieInfo from './MovieInfo'
 import MovieThumbnail from './MovieThumbnail'
-import $ from 'jquery'
 
 export default {
   name: 'search-result',
@@ -54,7 +53,9 @@ export default {
           this.selectedMovie.index = index
 
           // Move movie-info component to the right position in the DOM
-          $(this.$el).find('#movie-' + movieInfoIndex).append($('#movie-info'))
+          const movieContainer = document.getElementById('movie-' + movieInfoIndex)
+          const movieInfoElement = document.getElementById('movie-info')
+          movieContainer.appendChild(movieInfoElement)
 
           this.selectedMovie.show = true
         }, function (err) {
