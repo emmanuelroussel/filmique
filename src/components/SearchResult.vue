@@ -40,8 +40,14 @@ export default {
       if (index === this.selectedMovie.index) {
         this.selectedMovie.show = !this.selectedMovie.show
       } else {
+        let gridWidth = 2
+
+        if (window.innerWidth > 750) {
+          gridWidth = 4
+        }
+
         // Find where the movie-info component should go
-        const movieInfoIndex = (Math.ceil((index + 1) / 4.0) * 4) - 1
+        const movieInfoIndex = (Math.ceil((index + 1) / gridWidth) * gridWidth) - 1
 
         this.$http.get('http://localhost:3000/api/movies/' + movie.id).then(function (res) {
           this.selectedMovie.info = res.body

@@ -44,20 +44,11 @@ export default {
   position: relative;
 	border-bottom: 20px solid #F2545B;
 }
-.triangle-0 {
-  /* margin-left: -moz-calc(12.5% - 25px - 0.5em);
-  margin-left: -webkit-calc(12.5% - 25px - 0.5em);
-  margin-left: -o-calc(12.5% - 25px - 0.5em); */
-  margin-left: calc(((100% - 6em) / 8) - 25px);
+.triangle-0, .triangle-2 {
+  margin-left: calc(((50% - 1em) / 2) - 25px);
 }
-.triangle-1 {
-  margin-left: calc((((100% - 6em) / 8) * 3) - 25px + 2em);
-}
-.triangle-2 {
-  margin-left: calc((((100% - 6em) / 8) * 5) - 25px + 4em);
-}
-.triangle-3 {
-  margin-left: calc((((100% - 6em) / 8) * 7) - 25px + 6em);
+.triangle-1, .triangle-3 {
+  margin-left: calc(100% - ((50% - 1em) / 2) - 25px);
 }
 .line {
   border-bottom: 1px solid red;
@@ -72,6 +63,21 @@ export default {
 }
 .main, .rating {
   font-weight: bold;
+}
+/* Larger than tablet */
+@media (min-width: 750px) {
+  .triangle-0 {
+    margin-left: calc(((100% - 6em) / 8) - 25px);
+  }
+  .triangle-1 {
+    margin-left: calc((((100% - 6em) / 8) * 3) - 25px + 2em);
+  }
+  .triangle-2 {
+    margin-left: calc((((100% - 6em) / 8) * 5) - 25px + 4em);
+  }
+  .triangle-3 {
+    margin-left: calc((((100% - 6em) / 8) * 7) - 25px + 6em);
+  }
 }
 /* Larger than phablet */
 @media (min-width: 1000px) {
