@@ -29,7 +29,7 @@ export default {
     return {
       selectedMovie: {
         info: this.movies[0], // dummy data to avoid undefined properties
-        index: 0,
+        index: -1,
         show: false
       }
     }
