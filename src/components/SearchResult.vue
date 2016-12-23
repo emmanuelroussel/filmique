@@ -16,11 +16,6 @@
       </infinite-loading>
     </div>
     <movie-info v-show="selectedMovie.show" id="movie-info" :movie="selectedMovie.info" :index="selectedMovie.index % 4"></movie-info>
-
-    <footer>
-      <img src="../assets/powered-by-tmdb.svg" />
-      <p>This product uses the TMDb API but is not endorsed or certified by TMDb</p>
-    </footer>
   </div>
 </template>
 
@@ -91,16 +86,6 @@ export default {
 }
 .movie-info-container {
   width: 100%;
-}
-footer {
-  margin-top: 8em;
-  margin-bottom: 2em;
-  text-align: center;
-  font-size: 1.2rem;
-}
-footer img {
-  width: 100px;
-  margin: 0 auto;
 }
 /* Larger than phablet */
 @media (min-width: 1000px) {

@@ -2,6 +2,10 @@
   <div id="app">
     <home v-on:search="search"></home>
     <search-result v-if="results.length > 0" :movies="results" :search-input="searchInput" v-on:scroll="scroll"></search-result>
+    <footer v-if="results.length > 0" >
+      <img src="./assets/powered-by-tmdb.svg" />
+      <p>This product uses the TMDb API but is not endorsed or certified by TMDb</p>
+    </footer>
   </div>
 </template>
 
@@ -70,3 +74,16 @@ export default {
 
 <style src="assets/css/normalize.css"></style>
 <style src="assets/css/skeleton.css"></style>
+<style scoped>
+
+footer {
+  margin-top: 8em;
+  margin-bottom: 2em;
+  text-align: center;
+  font-size: 1.2rem;
+}
+footer img {
+  width: 100px;
+  margin: 0 auto;
+}
+</style>
