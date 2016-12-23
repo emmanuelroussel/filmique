@@ -52,10 +52,6 @@ export default {
           this.selectedMovie.info = res.body
           this.selectedMovie.index = index
 
-          if (!this.selectedMovie.info.Plot || this.selectedMovie.info.Plot === 'N/A') {
-            this.selectedMovie.info.Plot = this.movies[index].overview
-          }
-
           // Move movie-info component to the right position in the DOM
           const movieContainer = document.getElementById('movie-' + movieInfoIndex)
           const movieInfoElement = document.getElementById('movie-info')
