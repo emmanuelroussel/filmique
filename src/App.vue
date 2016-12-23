@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <home v-on:search="search"></home>
-    <search-result v-if="results.length > 0" :movies="results" :search-input="searchInput" v-on:scroll="scroll"></search-result>
+    <search-result v-if="results.length > 0" :movies="results" :search-input="searchInput"></search-result>
+    <infinite-loading :on-infinite="onInfinite" ref="infiniteLoading" v-if="results.length > 0">
+      <span slot="no-more"></span>
+    </infinite-loading>
     <footer v-if="results.length > 0" >
       <img src="./assets/powered-by-tmdb.svg" />
       <p>This product uses the TMDb API but is not endorsed or certified by TMDb</p>
@@ -12,29 +15,33 @@
 <script>
 import Home from './components/Home'
 import SearchResult from './components/SearchResult'
+import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
   name: 'app',
   components: {
     Home,
-    SearchResult
+    SearchResult,
+    InfiniteLoading
   },
   data: function () {
     return {
       searchInput: '',
-      results: []
+      results: [],
+      page: 1
     }
   },
   methods: {
     search: function (input) {
       this.results = []
       this.searchInput = input
+      this.page = 1
 
       // Do search
       this.$http.get('http://localhost:3000/api/movies/search', {
         params: {
           search: input,
-          page: 1
+          page: this.page
         }
       }).then(function (res) {
         // Add info = false to all movies
@@ -50,15 +57,16 @@ export default {
         console.error(err)
       })
     },
-    scroll: function () {
+    onInfinite: function () {
+      this.page ++
+
       this.$http.get('http://localhost:3000/api/movies/search', {
         params: {
           search: this.searchInput,
-          page: this.results.length / 20 + 1
+          page: this.page
         }
       }).then(function (res) {
-        console.log(res)
-        if (res.body.results) {
+        if (res.body.results.length) {
           this.results = this.results.concat(res.body.results)
           this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
         } else {
@@ -74,8 +82,8 @@ export default {
 
 <style src="assets/css/normalize.css"></style>
 <style src="assets/css/skeleton.css"></style>
-<style scoped>
 
+<style scoped>
 footer {
   margin-top: 8em;
   margin-bottom: 2em;

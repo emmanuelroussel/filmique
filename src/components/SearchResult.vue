@@ -9,11 +9,6 @@
           <movie-thumbnail :posterPath="movie.poster_path" :title="movie.title" :releaseDate="movie.release_date"></movie-thumbnail>
         </div>
       </div>
-      <infinite-loading :on-infinite="onInfinite" ref="infiniteLoading">
-        <span slot="no-more">
-          There is no more Hacker News :(
-        </span>
-      </infinite-loading>
     </div>
     <movie-info v-show="selectedMovie.show" id="movie-info" :movie="selectedMovie.info" :index="selectedMovie.index % 4"></movie-info>
   </div>
@@ -22,14 +17,12 @@
 <script>
 import MovieInfo from './MovieInfo'
 import MovieThumbnail from './MovieThumbnail'
-import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
   name: 'search-result',
   components: {
     MovieInfo,
-    MovieThumbnail,
-    InfiniteLoading
+    MovieThumbnail
   },
   props: ['movies', 'searchInput'],
   data: function () {
@@ -69,9 +62,6 @@ export default {
           console.error(err)
         })
       }
-    },
-    onInfinite: function () {
-      this.$emit('scroll')
     }
   }
 }
