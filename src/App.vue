@@ -27,7 +27,12 @@ export default {
       this.searchInput = input
 
       // Do search
-      this.$http.get('http://localhost:3000/api/movies/' + input + '/' + '1').then(function (res) {
+      this.$http.get('http://localhost:3000/api/movies/search', {
+        params: {
+          search: input,
+          page: 1
+        }
+      }).then(function (res) {
         // Add info = false to all movies
         let tempResults = res.body.results
         if (tempResults) {
