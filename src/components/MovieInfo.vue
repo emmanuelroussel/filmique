@@ -6,24 +6,30 @@
     <div class="line"></div>
 
     <div class="basic-info">
-      {{ movie.Genre }} | {{ formattedRuntime }} | {{ movie.Rated }}
+      <span v-show="movie.Genre && movie.Genre !== 'N/A'">{{ movie.Genre }}</span>
+      <span v-show="movie.Runtime && movie.Runtime !== 'N/A'"> | {{ formattedRuntime }}</span>
+      <span v-show="movie.Rated && movie.Rated !== 'N/A'"> | {{ movie.Rated }}</span>
     </div>
     <div class="row">
       <div class="plot ten columns">
         {{ movie.Plot }}
       </div>
       <div class="rating two columns">
-        <div class="score">
-          {{ movie.imdbRating }}/10
+        <div v-show="movie.imdbRating && movie.imdbRating !== 'N/A'">
+          <div class="score">
+            {{ movie.imdbRating }}/10
+          </div>
+          <div class="organization">
+            IMDB
+          </div>
         </div>
-        <div class="organization">
-          IMDB
-        </div>
-        <div class="score">
-          {{ movie.Metascore }}
-        </div>
-        <div class="organization">
-          Metascore
+        <div v-show="movie.Metascore && movie.Metascore !== 'N/A'">
+          <div class="score">
+            {{ movie.Metascore }}
+          </div>
+          <div class="organization">
+            Metascore
+          </div>
         </div>
       </div>
     </div>
@@ -37,7 +43,7 @@ export default {
   computed: {
     formattedRuntime: function () {
       if (!this.movie.Runtime || this.movie.Runtime === 'N/A') {
-        return 'N/A'
+        return ''
       }
 
       const runtime = this.movie.Runtime.replace(' min', '')

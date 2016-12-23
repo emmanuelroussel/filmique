@@ -45,19 +45,16 @@ export default {
           gridWidth = 4
         }
 
-        // Find where the movie-info component should go
+        // Find where the movie-info component should go in the grid
         const movieInfoIndex = (Math.ceil((index + 1) / gridWidth) * gridWidth) - 1
 
         this.$http.get('http://localhost:3000/api/movies/' + movie.id).then(function (res) {
-          console.log(res.body)
-          console.log(this.movies[index])
           this.selectedMovie.info = res.body
+          this.selectedMovie.index = index
 
-          if (this.selectedMovie.info.Plot === 'N/A' || this.selectedMovie.info.Plot === undefined) {
+          if (!this.selectedMovie.info.Plot || this.selectedMovie.info.Plot === 'N/A') {
             this.selectedMovie.info.Plot = this.movies[index].overview
           }
-
-          this.selectedMovie.index = index
 
           // Move movie-info component to the right position in the DOM
           const movieContainer = document.getElementById('movie-' + movieInfoIndex)
