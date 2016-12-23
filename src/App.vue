@@ -4,6 +4,7 @@
     <search-result v-if="results.length > 0" :movies="results" :search-input="searchInput"></search-result>
     <infinite-loading :on-infinite="onInfinite" ref="infiniteLoading" v-if="results.length > 0" spinner="spiral">
       <span slot="no-more"></span>
+      <span slot="no-results"></span>
     </infinite-loading>
     <footer v-if="results.length > 0" >
       <img src="./assets/powered-by-tmdb.svg" />
