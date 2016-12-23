@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <home v-on:search="search"></home>
-    <search-result v-if="results.length > 0" :movies="results" :search-input="searchInput"></search-result>
+    <search-result v-if="results.length > 0" :movies="results" :search-input="searchInput" v-on:scroll="scroll"></search-result>
   </div>
 </template>
 
@@ -42,6 +42,24 @@ export default {
         }
 
         this.results = tempResults
+      }, function (err) {
+        console.error(err)
+      })
+    },
+    scroll: function () {
+      this.$http.get('http://localhost:3000/api/movies/search', {
+        params: {
+          search: this.searchInput,
+          page: this.results.length / 20 + 1
+        }
+      }).then(function (res) {
+        console.log(res)
+        if (res.body.results) {
+          this.results = this.results.concat(res.body.results)
+          this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
+        } else {
+          this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
+        }
       }, function (err) {
         console.error(err)
       })
