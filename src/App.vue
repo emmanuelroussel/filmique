@@ -2,7 +2,7 @@
   <div id="app">
     <home v-on:search="search"></home>
     <search-result v-if="results.length > 0" :movies="results" :search-input="searchInput"></search-result>
-    <infinite-loading :on-infinite="onInfinite" ref="infiniteLoading" v-if="results.length > 0">
+    <infinite-loading :on-infinite="onInfinite" ref="infiniteLoading" v-if="results.length > 0" spinner="spiral">
       <span slot="no-more"></span>
     </infinite-loading>
     <footer v-if="results.length > 0" >
@@ -93,5 +93,12 @@ footer {
 footer img {
   width: 100px;
   margin: 0 auto;
+}
+</style>
+
+<style>
+.loading-spiral {
+  border-color: #F2545B !important;
+  border-right-color: transparent !important;
 }
 </style>
