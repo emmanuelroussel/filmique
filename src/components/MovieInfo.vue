@@ -23,12 +23,12 @@
             IMDB
           </div>
         </div>
-        <div v-show="movie.Metascore && movie.Metascore !== 'N/A'">
+        <div v-show="movie.tomatoMeter && movie.tomatoMeter !== 'N/A'">
           <div class="score">
-            {{ movie.Metascore }}
+            {{ movie.tomatoMeter }}%
           </div>
           <div class="organization">
-            Metascore
+            Rotten Tomatoes
           </div>
         </div>
       </div>
