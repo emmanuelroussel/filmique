@@ -17,6 +17,7 @@
 <script>
 import MovieInfo from './MovieInfo'
 import MovieThumbnail from './MovieThumbnail'
+import $ from 'jquery'
 
 export default {
   name: 'search-result',
@@ -63,6 +64,11 @@ export default {
         })
       }
     }
+  },
+  mounted: function () {
+    $('html, body').animate({
+      scrollTop: $(this.$el).offset().top
+    }, 300)
   }
 }
 </script>
