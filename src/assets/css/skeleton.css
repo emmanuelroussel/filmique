@@ -164,7 +164,11 @@ p {
 /* Links
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 a {
-  color: #F2545B; }
+  color: #F2545B;
+  font-weight: bold;
+  text-decoration: none; }
+a:hover {
+  text-decoration: underline; }
 
 
 /* Buttons

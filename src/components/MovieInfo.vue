@@ -33,6 +33,9 @@
         </div>
       </div>
     </div>
+    <div class="links row">
+      <a v-show="movie.imdbID" v-bind:href="'http://www.imdb.com/title/' + movie.imdbID" target="_blank">Look it up on IMDb</a>
+    </div>
   </div>
 </template>
 
@@ -106,6 +109,9 @@ export default {
 .organization {
   margin-bottom: 1em;
 }
+.links {
+  margin-top: 1em;
+}
 /* Larger than tablet */
 @media (min-width: 750px) {
   .triangle-0 {
@@ -121,6 +127,9 @@ export default {
     margin-left: calc((((100% - 6em) / 8) * 7) - 25px + 6em);
   }
   .basic-info, .plot {
+    text-align: left;
+  }
+  .links {
     text-align: left;
   }
 }
