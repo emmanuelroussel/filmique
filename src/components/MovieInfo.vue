@@ -106,6 +106,10 @@ export default {
 .rating {
   line-height: normal;
 }
+.rating > div {
+  width: 45%;
+  display: inline-block;
+}
 .organization {
   margin-bottom: 1em;
 }
@@ -126,11 +130,16 @@ export default {
   .triangle-3 {
     margin-left: calc((((100% - 6em) / 8) * 7) - 25px + 6em);
   }
-  .basic-info, .plot {
+  .basic-info, .plot, .links {
     text-align: left;
   }
-  .links {
-    text-align: left;
+  .rating {
+    right: 0;
+    position: absolute;
+  }
+  .rating > div {
+    width: auto;
+    display: block;
   }
 }
 /* Larger than phablet */
