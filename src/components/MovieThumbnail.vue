@@ -6,7 +6,7 @@
     <div class="movie-title">
       {{ title }}
     </div>
-    <div>
+    <div class="release-date">
       {{ releaseDate | getYear }}
     </div>
   </div>
@@ -18,7 +18,7 @@ export default {
   props: ['posterPath', 'title', 'releaseDate'],
   filters: {
     getYear: function (date) {
-      if (!date) return ''
+      if (!date) return '-'
       return date.slice(0, date.indexOf('-'))
     }
   },
