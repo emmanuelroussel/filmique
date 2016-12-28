@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <home v-on:search="search"></home>
+    <home v-on:search="search" v-on:inputChange="resetErrorMessage" :error="error"></home>
     <search-result v-if="results.length > 0" :movies="results" :search-input="searchInput"></search-result>
     <infinite-loading :on-infinite="onInfinite" ref="infiniteLoading" v-if="results.length > 0" spinner="spiral">
       <span slot="no-more"></span>
@@ -29,7 +29,8 @@ export default {
     return {
       searchInput: '',
       results: [],
-      page: 1
+      page: 1,
+      error: ''
     }
   },
   methods: {
@@ -56,7 +57,15 @@ export default {
         this.results = tempResults
       }, function (err) {
         console.error(err)
+        if (err.status === 404) {
+          this.error = 'Sorry, no movies found for: ' + this.searchInput
+        } else if (err.status === 500) {
+          this.error = 'Oups something went wrong'
+        }
       })
+    },
+    resetErrorMessage: function () {
+      this.error = ''
     },
     onInfinite: function () {
       this.page ++
