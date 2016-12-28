@@ -28,7 +28,9 @@ export default {
   },
   methods: {
     search: function () {
-      this.$emit('search', this.input)
+      if (this.input) {
+        this.$emit('search', this.input)
+      }
     },
     inputChange: function () {
       this.$emit('inputChange')
