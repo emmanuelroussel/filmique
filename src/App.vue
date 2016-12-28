@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <home v-on:search="search" v-on:inputChange="resetErrorMessage" :error="error"></home>
+    <home v-on:search="search" v-on:inputChange="resetErrorMessage" :error="error" :loading="loading.search"></home>
     <search-result v-if="results.length > 0" :movies="results" :search-input="searchInput"></search-result>
     <infinite-loading :on-infinite="onInfinite" ref="infiniteLoading" v-if="results.length > 0" spinner="spiral">
       <span slot="no-more"></span>
@@ -30,11 +30,16 @@ export default {
       searchInput: '',
       results: [],
       page: 1,
-      error: ''
+      error: '',
+      loading: {
+        search: false,
+        info: false
+      }
     }
   },
   methods: {
     search: function (input) {
+      this.loading.search = true
       this.results = []
       this.searchInput = input
       this.page = 1
@@ -62,6 +67,8 @@ export default {
         } else if (err.status === 500) {
           this.error = 'Oups something went wrong'
         }
+      }).finally(function () {
+        this.loading.search = false
       })
     },
     resetErrorMessage: function () {

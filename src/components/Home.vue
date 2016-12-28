@@ -11,13 +11,16 @@
         {{ error }}
       </div>
     </div>
+    <div class="loading">
+      <img v-show="loading" src="../assets/rolling.svg" />
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: 'home',
-  props: ['error'],
+  props: ['error', 'loading'],
   data () {
     return {
       input: ''
@@ -53,6 +56,10 @@ export default {
 .error {
   color: #F2545B;
   min-height: 2em;
+}
+.loading {
+  margin-top: 1em;
+  min-height: 3em;
 }
 /* Larger than phablet */
 @media (min-width: 550px) {
