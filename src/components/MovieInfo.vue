@@ -113,7 +113,7 @@ export default {
 .organization {
   margin-bottom: 1em;
 }
-.links {
+.rating {
   margin-top: 1em;
 }
 /* Larger than tablet */
@@ -134,12 +134,16 @@ export default {
     text-align: left;
   }
   .rating {
+    margin-top: 0;
     right: 0;
     position: absolute;
   }
   .rating > div {
     width: auto;
     display: block;
+  }
+  .links {
+    margin-top: 1em;
   }
 }
 /* Larger than phablet */

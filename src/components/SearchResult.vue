@@ -47,7 +47,10 @@ export default {
         }
 
         // Find where the movie-info component should go in the grid
-        const movieInfoIndex = (Math.ceil((index + 1) / gridWidth) * gridWidth) - 1
+        let movieInfoIndex = (Math.ceil((index + 1) / gridWidth) * gridWidth) - 1
+        if (movieInfoIndex > this.movies.length - 1) {
+          movieInfoIndex = this.movies.length - 1
+        }
 
         this.$http.get('http://localhost:3000/api/movies/' + movie.id).then(function (res) {
           this.selectedMovie.info = res.body
