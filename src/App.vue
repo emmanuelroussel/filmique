@@ -43,6 +43,7 @@ export default {
   },
   methods: {
     search: function (input) {
+      this.error = ''
       this.loading.search = true
       this.results = []
       this.searchInput = input
