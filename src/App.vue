@@ -91,6 +91,9 @@ export default {
         }
       }, function (err) {
         console.error(err)
+        if (err.status === 404) {
+          this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
+        }
       })
     }
   }
