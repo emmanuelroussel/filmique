@@ -32,7 +32,8 @@ export default {
     return {
       searchInput: '',
       results: [],
-      page: 1,
+      currentPage: 1,
+      totalPages: 0,
       error: '',
       loading: {
         search: false,
@@ -45,13 +46,14 @@ export default {
       this.loading.search = true
       this.results = []
       this.searchInput = input
-      this.page = 1
+      this.currentPage = 1
+      this.totalPages = 0
 
       // Do search
       this.$http.get('http://localhost:3000/api/movies/search', {
         params: {
           search: input,
-          page: this.page
+          page: this.currentPage
         }
       }).then(function (res) {
         // Add info = false to all movies
@@ -62,6 +64,7 @@ export default {
           }
         }
 
+        this.totalPages = res.body.total_pages
         this.results = tempResults
       }, function (err) {
         console.error(err)
@@ -78,26 +81,30 @@ export default {
       this.error = ''
     },
     onInfinite: function () {
-      this.page ++
+      this.currentPage ++
 
-      this.$http.get('http://localhost:3000/api/movies/search', {
-        params: {
-          search: this.searchInput,
-          page: this.page
-        }
-      }).then(function (res) {
-        if (res.body.results.length) {
-          this.results = this.results.concat(res.body.results)
-          this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
-        } else {
-          this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
-        }
-      }, function (err) {
-        console.error(err)
-        if (err.status === 404) {
-          this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
-        }
-      })
+      if (this.currentPage > this.totalPages) {
+        this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
+      } else {
+        this.$http.get('http://localhost:3000/api/movies/search', {
+          params: {
+            search: this.searchInput,
+            page: this.currentPage
+          }
+        }).then(function (res) {
+          if (res.body.results.length) {
+            this.results = this.results.concat(res.body.results)
+            this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
+          } else {
+            this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
+          }
+        }, function (err) {
+          console.error(err)
+          if (err.status === 404) {
+            this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
+          }
+        })
+      }
     }
   }
 }
