@@ -5,44 +5,47 @@
     </div>
     <div class="line"></div>
 
-    <div class="basic-info">
-      <span v-show="movie.Genre && movie.Genre !== 'N/A'">{{ movie.Genre }}</span>
-      <span v-show="movie.Runtime && movie.Runtime !== 'N/A'"> | {{ formattedRuntime }}</span>
-      <span v-show="movie.Rated && movie.Rated !== 'N/A'"> | {{ movie.Rated }}</span>
-    </div>
-    <div class="row">
-      <div class="plot ten columns">
-        {{ movie.Plot }}
+    <div v-show="!loading">
+      <div class="basic-info">
+        <span v-show="movie.Genre && movie.Genre !== 'N/A'">{{ movie.Genre }}</span>
+        <span v-show="movie.Runtime && movie.Runtime !== 'N/A'"> | {{ formattedRuntime }}</span>
+        <span v-show="movie.Rated && movie.Rated !== 'N/A'"> | {{ movie.Rated }}</span>
       </div>
-      <div class="rating two columns">
-        <div v-show="movie.imdbRating && movie.imdbRating !== 'N/A'">
-          <div class="score">
-            {{ movie.imdbRating }}/10
+      <div class="row">
+        <div class="plot ten columns">
+          {{ movie.Plot }}
+        </div>
+        <div class="rating two columns">
+          <div v-show="movie.imdbRating && movie.imdbRating !== 'N/A'">
+            <div class="score">
+              {{ movie.imdbRating }}/10
+            </div>
+            <div class="organization">
+              IMDB
+            </div>
           </div>
-          <div class="organization">
-            IMDB
+          <div v-show="movie.tomatoMeter && movie.tomatoMeter !== 'N/A'">
+            <div class="score">
+              {{ movie.tomatoMeter }}%
+            </div>
+            <div class="organization">
+              Rotten Tomatoes
+            </div>
           </div>
         </div>
-        <div v-show="movie.tomatoMeter && movie.tomatoMeter !== 'N/A'">
-          <div class="score">
-            {{ movie.tomatoMeter }}%
-          </div>
-          <div class="organization">
-            Rotten Tomatoes
-          </div>
-        </div>
+      </div>
+      <div class="links row">
+        <a v-show="movie.imdbID" v-bind:href="'http://www.imdb.com/title/' + movie.imdbID" target="_blank">Look it up on IMDb</a>
       </div>
     </div>
-    <div class="links row">
-      <a v-show="movie.imdbID" v-bind:href="'http://www.imdb.com/title/' + movie.imdbID" target="_blank">Look it up on IMDb</a>
-    </div>
+    <img class="loading" v-show="loading" src="../assets/rolling.svg" />
   </div>
 </template>
 
 <script>
 export default {
   name: 'movie-info',
-  props: ['movie', 'index'],
+  props: ['movie', 'index', 'loading'],
   computed: {
     formattedRuntime: function () {
       if (!this.movie.Runtime || this.movie.Runtime === 'N/A') {
@@ -115,6 +118,10 @@ export default {
 }
 .rating {
   margin-top: 1em;
+}
+.loading {
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 /* Larger than tablet */
 @media (min-width: 750px) {

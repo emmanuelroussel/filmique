@@ -10,7 +10,7 @@
         </div>
       </div>
     </div>
-    <movie-info v-show="selectedMovie.show" id="movie-info" :movie="selectedMovie.info" :index="selectedMovie.index % 4"></movie-info>
+    <movie-info v-show="selectedMovie.show" id="movie-info" :movie="selectedMovie.info" :index="selectedMovie.index % 4" :loading="loadingInfo"></movie-info>
   </div>
 </template>
 
@@ -32,7 +32,8 @@ export default {
         info: this.movies[0], // dummy data to avoid undefined properties
         index: -1,
         show: false
-      }
+      },
+      loadingInfo: false
     }
   },
   methods: {
@@ -52,18 +53,21 @@ export default {
           movieInfoIndex = this.movies.length - 1
         }
 
+        // Move movie-info component to the right position in the DOM
+        const movieContainer = document.getElementById('movie-' + movieInfoIndex)
+        const movieInfoElement = document.getElementById('movie-info')
+        movieContainer.appendChild(movieInfoElement)
+
+        this.selectedMovie.index = index
+        this.loadingInfo = true
+        this.selectedMovie.show = true
+
         this.$http.get('http://localhost:3000/api/movies/' + movie.id).then(function (res) {
           this.selectedMovie.info = res.body
-          this.selectedMovie.index = index
-
-          // Move movie-info component to the right position in the DOM
-          const movieContainer = document.getElementById('movie-' + movieInfoIndex)
-          const movieInfoElement = document.getElementById('movie-info')
-          movieContainer.appendChild(movieInfoElement)
-
-          this.selectedMovie.show = true
         }, function (err) {
           console.error(err)
+        }).finally(function () {
+          this.loadingInfo = false
         })
       }
     }
