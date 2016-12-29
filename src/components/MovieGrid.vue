@@ -18,6 +18,7 @@
 import MovieInfo from './MovieInfo'
 import Movie from './Movie'
 import $ from 'jquery'
+import global from '../global'
 
 export default {
   name: 'movie-grid',
@@ -62,7 +63,7 @@ export default {
         this.loadingInfo = true
         this.selectedMovie.show = true
 
-        this.$http.get('http://localhost:3000/api/movies/' + movie.id).then(function (res) {
+        this.$http.get(global.apiUrl + '/movies/' + movie.id).then(function (res) {
           this.selectedMovie.info = res.body
         }, function (err) {
           console.error(err)
