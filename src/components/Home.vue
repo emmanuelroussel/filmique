@@ -3,7 +3,7 @@
     <div class="row">
       <h1 class="logo logo-full-size">filmique</h1>
       <h4>Enter a theme. Find movies.</h4>
-      <input v-model.trim="input" v-on:keyup.enter="search" v-on:keyup="inputChange" class="input-home" type="text" placeholder="Ex: Space, World War 2, Gangster, etc." />
+      <input v-model.trim="input" v-on:keyup.enter="search" v-on:keyup="inputChange" type="text" placeholder="Ex: Space, World War 2, Gangster, etc." />
       <button v-on:click="search" class="button-primary">Find films</button>
     </div>
     <div class="row error">
@@ -11,7 +11,7 @@
         {{ error }}
       </div>
     </div>
-    <div class="loading">
+    <div class="row loading">
       <img v-show="loading" src="../assets/rolling.svg" />
     </div>
   </div>
@@ -63,17 +63,17 @@ export default {
   margin-top: 1em;
   min-height: 3em;
 }
-/* Larger than phablet */
-@media (min-width: 550px) {
-  .logo-full-size {
-    font-size: 4em;
-  }
-}
-.input-home {
+input {
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 100%;
   max-width: 550px;
+}
+/* Larger than phablet */
+@media (min-width: 550px) {
+  .logo-full-size {
+    font-size: 4em;
+  }
 }
 </style>

@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="movie-poster">
+    <div class="poster">
       <img class="u-full-width" v-bind:src="posterPath" />
     </div>
-    <div class="movie-title">
+    <div class="title">
       {{ title }}
     </div>
     <div class="release-date">
@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: 'movie-thumbnail',
+  name: 'movie',
   props: ['posterPath', 'title', 'releaseDate'],
   filters: {
     getYear: function (date) {
@@ -32,17 +32,17 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.movie-title {
+.title {
   font-weight: bold;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.movie-poster {
+.poster {
   padding-top: 150%;
   position: relative;
 }
-.movie-poster > img {
+.poster > img {
   position: absolute;
   padding-left: 1em;
   padding-right: 1em;
@@ -53,7 +53,7 @@ export default {
 }
 /* Larger than phablet */
 @media (min-width: 1000px) {
-  .movie-poster > img {
+  .poster > img {
     padding-left: 2em;
     padding-right: 2em;
     padding-top: 4em;

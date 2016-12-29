@@ -6,24 +6,24 @@
     <div class="row grid">
       <div v-for="(movie, index) in movies" v-bind:id="'movie-' + index">
         <div class="custom-column" v-on:click="toggleInfo(movie, index)">
-          <movie-thumbnail :posterPath="movie.poster_path" :title="movie.title" :releaseDate="movie.release_date"></movie-thumbnail>
+          <movie :posterPath="movie.poster_path" :title="movie.title" :releaseDate="movie.release_date"></movie>
         </div>
       </div>
     </div>
-    <movie-info v-show="selectedMovie.show" id="movie-info" :movie="selectedMovie.info" :index="selectedMovie.index % 4" :loading="loadingInfo"></movie-info>
+    <movie-info v-show="selectedMovie.show" id="movie-info" :movie="selectedMovie.info" :gridPosition="selectedMovie.index % 4" :loading="loadingInfo"></movie-info>
   </div>
 </template>
 
 <script>
 import MovieInfo from './MovieInfo'
-import MovieThumbnail from './MovieThumbnail'
+import Movie from './Movie'
 import $ from 'jquery'
 
 export default {
-  name: 'search-result',
+  name: 'movie-grid',
   components: {
     MovieInfo,
-    MovieThumbnail
+    Movie
   },
   props: ['movies', 'searchInput'],
   data: function () {
@@ -86,9 +86,6 @@ export default {
   text-align: center;
   margin-left: -1em;
   margin-right: -1em;
-}
-.movie-info-container {
-  width: 100%;
 }
 /* Larger than phablet */
 @media (min-width: 1000px) {
