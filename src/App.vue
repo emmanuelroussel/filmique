@@ -111,8 +111,8 @@ export default {
 }
 </script>
 
-<style src="assets/css/normalize.css"></style>
-<style src="assets/css/skeleton.css"></style>
+<style src="./style/normalize.css"></style>
+<style src="./style/skeleton.css"></style>
 
 <style scoped>
 footer {
