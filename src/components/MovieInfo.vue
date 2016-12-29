@@ -14,6 +14,10 @@
       <div class="row">
         <div class="plot ten columns">
           {{ movie.Plot }}
+
+          <div class="links">
+            <a v-show="isSomething(movie.imdbID)" v-bind:href="'http://www.imdb.com/title/' + movie.imdbID" target="_blank">Look it up on IMDb</a>
+          </div>
         </div>
         <div class="rating two columns">
           <div v-show="isSomething(movie.imdbRating)">
@@ -33,9 +37,6 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="row links">
-        <a v-show="isSomething(movie.imdbID)" v-bind:href="'http://www.imdb.com/title/' + movie.imdbID" target="_blank">Look it up on IMDb</a>
       </div>
     </div>
 
@@ -145,15 +146,14 @@ export default {
   }
   .rating {
     margin-top: 0;
-    right: 0;
-    position: absolute;
+    float: right;
   }
   .rating > div {
     width: auto;
     display: block;
   }
   .links {
-    margin-top: 1em;
+    margin-top: 0.5em;
   }
 }
 /* Larger than phablet */
