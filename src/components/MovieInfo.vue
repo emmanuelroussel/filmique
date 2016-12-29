@@ -6,18 +6,14 @@
     <div class="line"></div>
 
     <div v-show="!loading">
-      <div class="row basic-info">
+      <div class="basic-info">
         <span v-show="isSomething(movie.Genre)">{{ movie.Genre }}</span>
         <span v-show="isSomething(movie.Runtime)"> | {{ formattedRuntime }}</span>
         <span v-show="isSomething(movie.Rated)"> | {{ movie.Rated }}</span>
       </div>
-      <div class="row">
+      <div>
         <div class="plot ten columns">
           {{ movie.Plot }}
-
-          <div class="links">
-            <a v-show="isSomething(movie.imdbID)" v-bind:href="'http://www.imdb.com/title/' + movie.imdbID" target="_blank">Look it up on IMDb</a>
-          </div>
         </div>
         <div class="rating two columns">
           <div v-show="isSomething(movie.imdbRating)">
@@ -36,6 +32,9 @@
               Rotten Tomatoes
             </div>
           </div>
+        </div>
+        <div class="row links">
+          <a v-show="isSomething(movie.imdbID)" v-bind:href="'http://www.imdb.com/title/' + movie.imdbID" target="_blank">Look it up on IMDb</a>
         </div>
       </div>
     </div>
@@ -154,6 +153,8 @@ export default {
   }
   .links {
     margin-top: 0.5em;
+    float: left;
+    clear: left;
   }
 }
 /* Larger than phablet */
