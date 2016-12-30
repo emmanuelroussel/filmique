@@ -37,6 +37,10 @@ export default {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-top: 0.5em;
+}
+.release-date {
+  line-height: 1;
 }
 .poster {
   padding-top: 150%;
