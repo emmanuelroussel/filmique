@@ -70,17 +70,6 @@ input {
   width: 100%;
   max-width: 550px;
 }
-button {
-  font-weight: normal;
-  box-shadow: 0 3px 0 0 #B13E43;
-  border-radius: 4px;
-  transition: all 0.2s ease;
-}
-button:hover {
-  box-shadow: 0 5px 0 0 #B13E43;
-  transform: translateY(-2px);
-  transition: all 0.2s ease;
-}
 /* Larger than phablet */
 @media (min-width: 550px) {
   .logo-full-size {
