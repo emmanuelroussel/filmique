@@ -3,8 +3,8 @@
     <div class="row">
       <h1 class="logo logo-full-size">filmique</h1>
       <h4>Enter a theme. Find movies.</h4>
-      <input v-model.trim="input" v-on:keyup.enter="search" v-on:keyup="inputChange" type="text" placeholder="Ex: Space, World War 2, Gangster, etc." />
-      <button v-on:click="search" class="button-primary">Find films</button>
+      <input v-model.trim="input" v-on:keyup.enter="search" v-on:keyup="inputChange" type="text" />
+      <button v-on:click="search" class="button-primary">Find Films</button>
     </div>
     <div class="row error">
       <div v-show="error">
@@ -69,6 +69,17 @@ input {
   margin-right: auto;
   width: 100%;
   max-width: 550px;
+}
+button {
+  font-weight: normal;
+  box-shadow: 0 3px 0 0 #B13E43;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+button:hover {
+  box-shadow: 0 5px 0 0 #B13E43;
+  transform: translateY(-2px);
+  transition: all 0.2s ease;
 }
 /* Larger than phablet */
 @media (min-width: 550px) {
