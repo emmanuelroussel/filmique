@@ -48,7 +48,7 @@ export default {
       this.currentPage = 1
       this.totalPages = 0
 
-      this.$http.get(global.apiUrl + '/movies/search', {
+      this.$http.get(global.apiUrl + '/search', {
         params: {
           search: input,
           page: this.currentPage
@@ -76,7 +76,7 @@ export default {
       if (this.currentPage > this.totalPages) {
         this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
       } else {
-        this.$http.get(global.apiUrl + '/movies/search', {
+        this.$http.get(global.apiUrl + '/search', {
           params: {
             search: this.searchInput,
             page: this.currentPage
