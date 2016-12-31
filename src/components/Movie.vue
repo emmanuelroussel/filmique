@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="poster">
-      <img class="u-full-width" v-bind:src="posterPath" />
+      <img class="u-full-width" v-bind:src="posterPath" v-bind:alt="title + ' poster'" />
     </div>
     <div class="title">
       {{ title }}
