@@ -35,6 +35,7 @@
         </div>
         <div class="row links">
           <a v-show="isSomething(movie.imdbID)" v-bind:href="'http://www.imdb.com/title/' + movie.imdbID" target="_blank">Look it up on IMDb</a>
+          <a v-show="isSomething(movie.TrailerUrl)" v-bind:href="movie.TrailerUrl" target="_blank">YouTube Trailer</a>
         </div>
       </div>
     </div>
@@ -123,6 +124,10 @@ export default {
 .rating, .loading {
   margin-top: 1em;
 }
+.links a {
+  clear: both;
+  display: block;
+}
 .loading {
   margin-bottom: 1em;
 }
@@ -155,6 +160,10 @@ export default {
     margin-top: 0.5em;
     float: left;
     clear: left;
+  }
+  .links a {
+    display: inline;
+    margin-right: 2em;
   }
 }
 /* Larger than phablet */
