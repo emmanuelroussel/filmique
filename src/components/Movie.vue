@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="poster">
-      <img class="u-full-width" v-bind:src="posterPath" />
+      <img class="u-full-width" v-bind:src="posterPath" v-bind:alt="title + ' poster'" />
     </div>
     <div class="title">
       {{ title }}
@@ -37,6 +37,10 @@ export default {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-top: 0.5em;
+}
+.release-date {
+  line-height: 1;
 }
 .poster {
   padding-top: 150%;

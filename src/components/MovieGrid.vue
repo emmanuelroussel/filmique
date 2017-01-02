@@ -1,8 +1,5 @@
 <template>
   <div class="container movies">
-    <div class="row">
-      <h3>Results for: {{ searchInput }}</h3>
-    </div>
     <div class="row grid">
       <div v-for="(movie, index) in movies" v-bind:id="'movie-' + index">
         <div class="custom-column" v-on:click="toggleInfo(movie, index)">
@@ -26,7 +23,7 @@ export default {
     MovieInfo,
     Movie
   },
-  props: ['movies', 'searchInput'],
+  props: ['movies'],
   data: function () {
     return {
       selectedMovie: {

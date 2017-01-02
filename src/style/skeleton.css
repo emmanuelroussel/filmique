@@ -183,15 +183,18 @@ input[type="button"] {
   padding: 0 30px;
   color: #F2545B;
   text-align: center;
-  font-weight: 600;
+  font-weight: normal;
   line-height: 38px;
   letter-spacing: .1rem;
   text-decoration: none;
   white-space: nowrap;
   background-color: transparent;
   border: 1px solid #F2545B;
+  border-radius: 4px;
   cursor: pointer;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  box-shadow: 0 3px 0 0 #B13E43;
+  transition: all 0.2s ease; }
 .button:hover,
 button:hover,
 input[type="submit"]:hover,
@@ -204,7 +207,10 @@ input[type="reset"]:focus,
 input[type="button"]:focus {
   color: #F36369;
   border-color: #F36369;
-  outline: 0; }
+  outline: 0;
+  box-shadow: 0 5px 0 0 #B13E43;
+  transform: translateY(-2px);
+  transition: all 0.2s ease; }
 .button.button-primary,
 button.button-primary,
 input[type="submit"].button-primary,

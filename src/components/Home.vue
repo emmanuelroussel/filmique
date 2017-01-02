@@ -3,8 +3,8 @@
     <div class="row">
       <h1 class="logo logo-full-size">filmique</h1>
       <h4>Enter a theme. Find movies.</h4>
-      <input v-model.trim="input" v-on:keyup.enter="search" v-on:keyup="inputChange" type="text" placeholder="Ex: Space, World War 2, Gangster, etc." />
-      <button v-on:click="search" class="button-primary">Find films</button>
+      <input v-model.trim="input" v-on:keyup.enter="search" v-on:keyup="inputChange" type="text" autofocus />
+      <button v-on:click="search" class="button-primary">Find Films</button>
     </div>
     <div class="row error">
       <div v-show="error">

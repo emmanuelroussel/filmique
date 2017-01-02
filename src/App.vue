@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <home v-on:search="search" v-on:inputChange="resetErrorMessage" :error="error" :loading="loading"></home>
-    <movie-grid v-if="movies.length > 0" :movies="movies" :search-input="searchInput"></movie-grid>
+    <movie-grid v-if="movies.length > 0" :movies="movies"></movie-grid>
     <infinite-loading :on-infinite="onInfinite" ref="infiniteLoading" v-if="movies.length > 0" spinner="spiral">
       <span slot="no-more"></span>
       <span slot="no-results"></span>
