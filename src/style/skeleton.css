@@ -190,6 +190,9 @@ input[type="text"] {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none; }
+input[type="text"]:focus {
+  border: 1px solid #F36369;
+  outline: 0; }
 
 
 /* Spacing
