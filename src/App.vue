@@ -20,7 +20,6 @@
 import Home from './components/Home'
 import MovieGrid from './components/MovieGrid'
 import InfiniteLoading from 'vue-infinite-loading'
-import global from './global'
 
 export default {
   name: 'app',
@@ -48,7 +47,7 @@ export default {
       this.currentPage = 1
       this.totalPages = 0
 
-      this.$http.get(global.apiUrl + '/search', {
+      this.$http.get(process.env.API_URL + '/search', {
         params: {
           search: input,
           page: this.currentPage
@@ -76,7 +75,7 @@ export default {
       if (this.currentPage > this.totalPages) {
         this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete')
       } else {
-        this.$http.get(global.apiUrl + '/search', {
+        this.$http.get(process.env.API_URL + '/search', {
           params: {
             search: this.searchInput,
             page: this.currentPage
