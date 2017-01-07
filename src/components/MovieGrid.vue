@@ -16,6 +16,12 @@ import MovieInfo from './MovieInfo'
 import Movie from './Movie'
 import $ from 'jquery'
 
+const scrollToMovie = function (index) {
+  $('html, body').animate({
+    scrollTop: $('#movie-' + index).children('.custom-column').offset().top
+  }, 300)
+}
+
 export default {
   name: 'movie-grid',
   components: {
@@ -37,6 +43,10 @@ export default {
     toggleInfo: function (movie, index) {
       if (index === this.selectedMovie.index) {
         this.selectedMovie.show = !this.selectedMovie.show
+
+        if (this.selectedMovie.show) {
+          scrollToMovie(index)
+        }
       } else {
         let gridWidth = 2
 
@@ -58,6 +68,8 @@ export default {
         this.selectedMovie.index = index
         this.loadingInfo = true
         this.selectedMovie.show = true
+
+        scrollToMovie(index)
 
         this.$http.get(process.env.API_URL + '/movies/' + movie.id).then(function (res) {
           this.selectedMovie.info = res.body
